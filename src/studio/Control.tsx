@@ -1,9 +1,9 @@
 import React from "react";
-import { Setter } from "./global";
+import { Setter } from "../global";
 
 export function Control({ setter }: { setter: Setter<number> }) {
   const [checked, setChecked] = React.useState(true);
-  const [input, setInput] = React.useState("{}");
+  const [input, setInput] = React.useState('{"hello": "world"}');
 
   const handleChange = () => {
     setChecked(!checked);
@@ -12,8 +12,11 @@ export function Control({ setter }: { setter: Setter<number> }) {
 
   return (
     <div>
-      <span>Render: {checked.toString()}</span>
+      <span>
+        Render: <Checkbox value={checked} onChange={handleChange} />
+      </span>
       <div>
+        Input:
         <textarea
           value={input}
           onChange={(e) => {
@@ -26,7 +29,6 @@ export function Control({ setter }: { setter: Setter<number> }) {
           }}
         />
       </div>
-      <Checkbox value={checked} onChange={handleChange} />
     </div>
   );
 }

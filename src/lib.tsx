@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+// import Component from "./component/Component.tsx";
+import Component from "./component/MinimalComponent.tsx";
+
 import { type WindmillProps } from "./global";
 
-export function customComponent(props: WindmillProps<number>) {
+export function customComponent(props: WindmillProps<any>) {
   ReactDOM.createRoot(document.getElementById(props.id)!).render(
     <React.StrictMode>
-      <App
+      <Component
         passSetters={props.passSetters}
         setOutput={props.setOutput}
         renderInit={props.render}

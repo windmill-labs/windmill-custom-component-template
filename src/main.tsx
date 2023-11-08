@@ -2,18 +2,24 @@ import ReactDOM from "react-dom/client";
 import { Setter } from "./global";
 import { customComponent } from "./lib";
 import React from "react";
-import { Control } from "./Control";
+import { Control } from "./studio/Control";
 
-let setter: Setter<number> | undefined = undefined;
+let setter: Setter<any> | undefined = undefined;
+
+const outputs: string[] = [];
 customComponent({
   id: "root",
   render: true,
-  passSetters: (lsetter: Setter<number>) => {
+  passSetters: (lsetter: Setter<any>) => {
     console.log("passSetters");
     setter = lsetter;
   },
   setOutput: (out) => {
-    console.log("Output set: " + JSON.stringify(out, null, 2));
+    outputs.push(JSON.stringify(out));
+    document.getElementById("logs")!.innerHTML = outputs
+      .slice(-10)
+      .join("<br>");
+    console.log("Outputs: " + JSON.stringify(out, null, 2));
   },
 });
 
@@ -23,7 +29,6 @@ const waitForSetter = setInterval(() => {
     ReactDOM.createRoot(document.getElementById("controls")!).render(
       <React.StrictMode>
         <Control setter={setter!} />
-        <div>Look at console logs to see the output</div>
       </React.StrictMode>
     );
   }
