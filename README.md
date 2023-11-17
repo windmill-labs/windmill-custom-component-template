@@ -20,7 +20,7 @@ npm run dev
 
 4. Open your browser to see the live result.
 
-5. Start editing the `src/Component.tsx` file to start building your component.
+5. Start editing the `src/component/Component.tsx` file to start building your component.
 
 6. Edit COMPONENT_NAME in `vite.config.ts` to match your component name. It will
    be useful later
