@@ -40,5 +40,6 @@ export default defineConfig(({ mode }) => ({
     __COMPONENT_NAME__: JSON.stringify(
       __COMPONENT_NAME__.replace(/-/g, "_").replace(/\s/g, "_")
     ),
+    "process.env.NODE_ENV": '"production"',
   },
 }));
