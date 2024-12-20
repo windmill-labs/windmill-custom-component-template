@@ -17,29 +17,25 @@ export default defineConfig(({ mode }) => ({
         ),
     }),
   ],
-
-  resolve:
-    mode === "development"
-      ? {}
-      : {
-          alias: {
-            react: "https://unpkg.com/react@18.2.0/umd/react.development.js",
-            "react-dom":
-              "https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js",
-          },
-        },
   build: {
     lib: {
-      entry: "src/lib.tsx",
-      name: "wmc",
-      fileName: (format) => `cc.${format}.js`,
+      entry: "src/component/Component.tsx",
+      name: __COMPONENT_NAME__.replace(/-/g, "_").replace(/\s/g, "_"),
       formats: ["iife"],
+      fileName: (format) => `index.${format}.js`,
+    },
+    rollupOptions: {
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      },
     },
   },
   define: {
-    __COMPONENT_NAME__: JSON.stringify(
-      __COMPONENT_NAME__.replace(/-/g, "_").replace(/\s/g, "_")
-    ),
-    "process.env.NODE_ENV": '"production"',
+    __COMPONENT_NAME__: JSON.stringify(__COMPONENT_NAME__),
+    "process.env.NODE_ENV": JSON.stringify(mode),
   },
 }));
