@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
   ],
   build: {
     lib: {
-      entry: "src/component/Component.tsx",
+      entry: "src/lib.tsx",
       name: __COMPONENT_NAME__.replace(/-/g, "_").replace(/\s/g, "_"),
       formats: ["iife"],
       fileName: (format) => `index.${format}.js`,
