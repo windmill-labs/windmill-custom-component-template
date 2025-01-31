@@ -35,7 +35,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
   define: {
-    __COMPONENT_NAME__: JSON.stringify(__COMPONENT_NAME__),
+    __COMPONENT_NAME__: JSON.stringify(
+      __COMPONENT_NAME__.replace(/-/g, "_").replace(/\s/g, "_")
+    ),
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
 }));
